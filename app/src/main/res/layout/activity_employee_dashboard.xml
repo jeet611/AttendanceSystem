@@ -7,7 +7,7 @@
     tools:context=".EmployeeDashboard">
 
     <TextView
-        android:id="@+id/hello_user_"
+        android:id="@+id/UserNameTextView"
         android:layout_width="316dp"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
@@ -34,12 +34,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hello_user_">
+        app:layout_constraintTop_toBottomOf="@+id/UserNameTextView">
 
     </View>
 
     <TextView
-        android:id="@+id/th_june_202"
+        android:id="@+id/DateTextview"
         android:layout_width="127dp"
         android:layout_height="46dp"
         android:layout_alignParentLeft="true"
@@ -64,7 +64,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="56dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/th_june_202"
+        android:text="08:00:12 AM"
         android:textAppearance="@style/th_june_202"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rectangle_2" />
