@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AttendanceSystem</string>
+    <string name="attendence_">Attendance System</string>
+    <string name="trouble_sig">Trouble signing in? contact your Admin Cell</string>
+    <string name="hello_user_">Hello User!</string>
+    <string name="th_june_202">7TH JUNE,2021</string>
+
+
+</resources>
