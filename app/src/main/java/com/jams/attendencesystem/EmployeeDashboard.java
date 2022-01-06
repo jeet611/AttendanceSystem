@@ -3,7 +3,10 @@ package com.jams.attendencesystem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,11 +25,11 @@ import java.util.Date;
 
 public class EmployeeDashboard extends AppCompatActivity {
     TextView UserName;
-   // FirebaseDatabase database = FirebaseDatabase.getInstance();
+    Button LogoutUser;
     DatabaseReference databaseReference;
     FirebaseUser user;
     String uid;
-
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +46,19 @@ public class EmployeeDashboard extends AppCompatActivity {
         String DateTime = simpleDateFormat.format(calendar.getTime());
         currentTime.setText(DateTime);
         UserName = findViewById(R.id.UserNameTextView);
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
         uid = user.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    String user_name = snapshot.child(uid).child("UserName").getValue(String.class);
+                    String user_name = snapshot.child(uid).child("name").getValue(String.class);
 
-                Toast.makeText(getApplicationContext(),"Welcome :"+ user_name , Toast.LENGTH_LONG).show();
-                UserName.setText("Hello" + user_name);
+                Toast.makeText(getApplicationContext(),"Welcome : "+ user_name , Toast.LENGTH_LONG).show();
+                UserName.setText("Hello " + user_name);
                 }
 
             @Override
@@ -62,5 +66,21 @@ public class EmployeeDashboard extends AppCompatActivity {
 
             }
         });
+        LogoutUser = findViewById(R.id.LogoutButton);
+        LogoutUser.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              auth.signOut();
+                                              Intent intent = new Intent(getApplicationContext(),EmployeeLogin.class);
+                                              intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                              intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                              intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                              startActivity(intent);
+
+
+                                          }
+                                      });
     }
+
+
 }
