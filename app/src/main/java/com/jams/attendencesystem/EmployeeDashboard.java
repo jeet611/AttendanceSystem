@@ -25,7 +25,7 @@ import java.util.Date;
 
 public class EmployeeDashboard extends AppCompatActivity {
     TextView UserName;
-    Button LogoutUser;
+    Button LogoutUser,PunchInBtn;
     DatabaseReference databaseReference;
     FirebaseUser user;
     String uid;
@@ -49,6 +49,14 @@ public class EmployeeDashboard extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         uid = user.getUid();
+        PunchInBtn = findViewById(R.id.PunchInBtn);
+        PunchInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),PunchIn.class);
+                startActivity(intent);
+            }
+        });
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
